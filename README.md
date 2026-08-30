@@ -23,3 +23,13 @@ Para consultar el historial de commits:
 ```bash
 git log --oneline
 ```
+
+## Flujo de trabajo
+
+Durante el desarrollo de los ejercicios y laboratorios se utilizará el siguiente flujo básico de trabajo con Git:
+
+1. Crear o modificar los archivos del proyecto.
+2. Revisar los cambios utilizando `git status`.
+3. Agregar los cambios al área de preparación con `git add`.
+4. Crear un commit con un mensaje descriptivo mediante `git commit`.
+5. Sincronizar los cambios con GitHub utilizando `git push`.
