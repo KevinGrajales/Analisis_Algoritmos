@@ -48,7 +48,7 @@
 - `merge_sort` no cumple lo pedido: devuelve solo la lista, no la cuenta de comparaciones. Su descripción dice "de menor a mayor" cuando en realidad ordena de mayor a menor.
 - Falta la descripción de módulo en `algoritmos.py`, y `merge` y varias funciones auxiliares no tienen la sección de argumentos y retorno.
 - Las descripciones de los generadores son más cortas que las pedidas.
-- Faltan líneas en blanco entre funciones y salto de línea al final de los archivos.
+- Faltan líneas en blanco entre funciones.
 
 ## 4. Calidad del análisis de las gráficas (15 / 20)
 **Lo que hizo bien:**
