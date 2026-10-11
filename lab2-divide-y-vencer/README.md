@@ -78,3 +78,7 @@ Estos resultados son compatibles con las complejidades teóricas de ambos algori
 ### 3. Punto de cruce
 
 Con 10 elementos, fuerza bruta fue más rápida en esta medición. Desde 50 elementos, divide y vencerás obtuvo menores tiempos para todos los tamaños evaluados. Por tanto, el punto de cruce observado se encuentra entre 10 y 50 elementos, aunque sería necesario medir tamaños intermedios para estimarlo con mayor precisión.
+
+### 4. Comparación con el problema de encontrar el máximo
+
+El problema de encontrar el máximo de una lista también puede resolverse con divide y vencerás. Su recurrencia es `T(n) = 2T(n/2) + Θ(1)` y su complejidad es `Θ(n)`. Esta es la misma complejidad que tiene el recorrido iterativo que compara los elementos uno por uno. Por eso, en este problema, dividir la lista no mejora el orden de complejidad y puede agregar sobrecarga por las llamadas recursivas.
