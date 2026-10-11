@@ -52,3 +52,19 @@ Se evaluaron siete tamaños de entrada: 10, 50, 100, 500, 1000, 2000 y 4000 elem
 La gráfica muestra los tiempos de ejecución de ambos algoritmos. Para entradas pequeñas, la diferencia puede ser mínima y la recursividad puede añadir cierta sobrecarga. A medida que aumenta el tamaño de entrada, divide y vencerás presenta una ventaja más clara.
 
 ![Gráfica comparativa de tiempos de ejecución](./graficas/tiempo_vs_n.png)
+
+## Parte 3: Análisis de complejidad
+
+### 1. Recurrencia y teorema maestro
+
+En el algoritmo de divide y vencerás, el problema se divide en dos subproblemas de tamaño aproximado `n/2`. Además, se calcula el mejor subarreglo que cruza el punto medio recorriendo los elementos de ambos lados, lo que requiere tiempo lineal.
+
+Por lo tanto, la recurrencia es:
+
+`T(n) = 2T(n/2) + Θ(n)`
+
+En el teorema maestro, se tiene `a = 2`, `b = 2` y `f(n) = Θ(n)`. Como `n^(log₂ 2) = n`, se cumple el caso 2 del teorema maestro y la complejidad es:
+
+`T(n) = Θ(n log n)`
+
+El algoritmo de fuerza bruta, al acumular la suma de cada subarreglo sin recalcularla desde cero, tiene complejidad `Θ(n²)`.
