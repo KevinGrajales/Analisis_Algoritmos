@@ -1,14 +1,16 @@
-def insertion_sort(datos: list[int]) -> tuple[list[int], int]:
-    """Ordena una lista de indices de riesgo con el metodo de insercion.
 
-    No modifica la lista recibida: trabaja sobre una copia.
+"""Algoritmos de ordenamiento para los índices de riesgo de Tamiza."""
+
+
+def insertion_sort(datos: list[int]) -> tuple[list[int], int]:
+    """Ordena índices de riesgo de mayor a menor mediante inserción.
 
     Args:
-        datos: lista de indices de riesgo a ordenar.
+        datos: Lista de índices de riesgo que se van a ordenar.
 
     Returns:
-        Una tupla con la lista ordenada y el numero total de
-        comparaciones entre elementos realizadas durante el proceso.
+        Una tupla con la lista ordenada y el número de comparaciones
+        entre elementos realizadas durante el proceso.
     """
     lista = datos.copy()
     comparaciones = 0
@@ -30,34 +32,59 @@ def insertion_sort(datos: list[int]) -> tuple[list[int], int]:
 
     return lista, comparaciones
 
-def merge_sort(datos: list[int]) -> list[int]:
-    """Ordena una lista de menor a mayor usando merge sort.
+
+def merge_sort(datos: list[int]) -> tuple[list[int], int]:
+    """Ordena índices de riesgo de mayor a menor mediante Merge Sort.
 
     Args:
-        datos: lista de datos que se va a ordenar.
+        datos: Lista de índices de riesgo que se van a ordenar.
 
     Returns:
-        Una nueva lista con los datos ordenados.
+        Una tupla con la lista ordenada y el número total de
+        comparaciones entre elementos realizadas.
     """
     if len(datos) <= 1:
-        return datos
+        return datos.copy(), 0
 
     mitad = len(datos) // 2
 
-    izquierda = merge_sort(datos[:mitad])
-    derecha = merge_sort(datos[mitad:])
+    izquierda, comparaciones_izquierda = merge_sort(datos[:mitad])
+    derecha, comparaciones_derecha = merge_sort(datos[mitad:])
 
-    return merge(izquierda, derecha)
+    resultado, comparaciones_merge = merge(izquierda, derecha)
+
+    comparaciones_totales = (
+        comparaciones_izquierda
+        + comparaciones_derecha
+        + comparaciones_merge
+    )
+
+    return resultado, comparaciones_totales
 
 
-def merge(izquierda: list[int], derecha: list[int]) -> list[int]:
-    """Combina dos listas ordenadas en una sola lista ordenada."""
+def merge(
+    izquierda: list[int],
+    derecha: list[int],
+) -> tuple[list[int], int]:
+    """Combina dos listas ordenadas de mayor a menor.
+
+    Args:
+        izquierda: Primera lista ordenada de mayor a menor.
+        derecha: Segunda lista ordenada de mayor a menor.
+
+    Returns:
+        Una tupla con la lista combinada y el número de comparaciones
+        entre elementos de ambas listas.
+    """
     resultado = []
+    comparaciones = 0
 
     i = 0
     j = 0
 
     while i < len(izquierda) and j < len(derecha):
+        comparaciones += 1
+
         if izquierda[i] >= derecha[j]:
             resultado.append(izquierda[i])
             i += 1
@@ -73,4 +100,4 @@ def merge(izquierda: list[int], derecha: list[int]) -> list[int]:
         resultado.append(derecha[j])
         j += 1
 
-    return resultado
+    return resultado, comparaciones

@@ -19,15 +19,17 @@ def medir_insertion_sort(datos: list[int]) -> float:
     return fin - inicio
 
 
+
 def medir_merge_sort(datos: list[int]) -> float:
-    """Mide el tiempo de merge sort."""
+    """Mide el tiempo de ejecución de Merge Sort."""
     inicio = time.perf_counter()
 
-    merge_sort(datos)
+    _, comparaciones = merge_sort(datos)
 
     fin = time.perf_counter()
 
     return fin - inicio
+
 
 
 def main() -> None:
@@ -73,10 +75,8 @@ def main() -> None:
     plt.ylabel("Tiempo de ejecución (segundos)")
     plt.legend()
 
-    plt.savefig(
-        "lab1-fundamentos-complejidad-recurrencias/"
-        "graficas/parte4_tiempo.png"
-    )
+    plt.savefig("graficas/parte4_tiempo.png")
+    
 
     plt.close()
 
