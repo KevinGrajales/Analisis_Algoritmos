@@ -82,3 +82,13 @@ Con 10 elementos, fuerza bruta fue más rápida en esta medición. Desde 50 elem
 ### 4. Comparación con el problema de encontrar el máximo
 
 El problema de encontrar el máximo de una lista también puede resolverse con divide y vencerás. Su recurrencia es `T(n) = 2T(n/2) + Θ(1)` y su complejidad es `Θ(n)`. Esta es la misma complejidad que tiene el recorrido iterativo que compara los elementos uno por uno. Por eso, en este problema, dividir la lista no mejora el orden de complejidad y puede agregar sobrecarga por las llamadas recursivas.
+
+### 5. Estimación para un millón de elementos
+
+Para estimar el tiempo con un millón de elementos, se utilizaron los resultados medidos para 4000 elementos y las complejidades teóricas de los algoritmos.
+
+Para fuerza bruta, con complejidad cuadrática, la estimación es de aproximadamente 56 466 segundos, equivalentes a 15,7 horas.
+
+Para divide y vencerás, con complejidad `Θ(n log n)`, la estimación es de aproximadamente 5,32 segundos.
+
+Estos valores son aproximados y se basan en extrapolar las mediciones disponibles. No son tiempos medidos directamente y pueden variar según el equipo y las condiciones de ejecución.
