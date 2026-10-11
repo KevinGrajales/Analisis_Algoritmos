@@ -83,10 +83,8 @@ def main() -> None:
     plt.xlabel("Tamaño de entrada (n)")
     plt.ylabel("Número de comparaciones")
     plt.legend()
-    plt.savefig(
-        "lab1-fundamentos-complejidad-recurrencias/"
-        "graficas/parte3_comparaciones.png"
-    )
+    plt.savefig("graficas/parte3_comparaciones.png")
+    
     plt.close()
 
     plt.figure()
@@ -113,10 +111,8 @@ def main() -> None:
     plt.xlabel("Tamaño de entrada (n)")
     plt.ylabel("Tiempo de ejecución (segundos)")
     plt.legend()
-    plt.savefig(
-        "lab1-fundamentos-complejidad-recurrencias/"
-        "graficas/parte3_tiempo.png"
-    )
+    plt.savefig("graficas/parte3_tiempo.png")
+
     plt.close()
 
 
