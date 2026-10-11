@@ -68,3 +68,13 @@ En el teorema maestro, se tiene `a = 2`, `b = 2` y `f(n) = Θ(n)`. Como `n^(log�
 `T(n) = Θ(n log n)`
 
 El algoritmo de fuerza bruta, al acumular la suma de cada subarreglo sin recalcularla desde cero, tiene complejidad `Θ(n²)`.
+
+### 2. Comportamiento empírico
+
+En las mediciones realizadas, el tiempo de fuerza bruta crece de forma más rápida que el de divide y vencerás. Al duplicar la entrada de 1000 a 2000 elementos, el tiempo de fuerza bruta se multiplicó aproximadamente por 4,24, mientras que el de divide y vencerás lo hizo por 2,77. Al pasar de 2000 a 4000 elementos, los factores fueron aproximadamente 4,11 y 1,99, respectivamente.
+
+Estos resultados son compatibles con las complejidades teóricas de ambos algoritmos, aunque los tiempos pueden variar entre ejecuciones.
+
+### 3. Punto de cruce
+
+Con 10 elementos, fuerza bruta fue más rápida en esta medición. Desde 50 elementos, divide y vencerás obtuvo menores tiempos para todos los tamaños evaluados. Por tanto, el punto de cruce observado se encuentra entre 10 y 50 elementos, aunque sería necesario medir tamaños intermedios para estimarlo con mayor precisión.
