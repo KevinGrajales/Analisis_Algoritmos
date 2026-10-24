@@ -1,83 +1,76 @@
 # Retroalimentación — Laboratorio 01: Fundamentos, complejidad y recurrencias
 
-**Estudiante:** Kevin Grajales · **Laboratorio:** Fundamentos, complejidad y recurrencias
-**Fecha límite:** 2026-10-04 23:59 · **Versión revisada:** commit `92231e1`
+**Estudiante:** Kevin Grajales · **Laboratorio:** Laboratorio evaluativo 01 — Fundamentos, complejidad y recurrencias
+**Fecha límite:** 2026-10-24 23:59 · **Versión revisada:** commit `c99804f`
 
 ## Nota
 
 | Criterio | Puntos |
 |---|---|
-| Corrección conceptual | 17 / 25 |
-| Calidad de la explicación teórica | 16 / 25 |
-| Corrección de la implementación | 10 / 20 |
-| Calidad del análisis de las gráficas | 15 / 20 |
-| Documentación y organización del informe | 4 / 10 |
-| **Total** | **62 / 100** |
-| **Nota (0–5)** | **3.10** |
+| Corrección conceptual | 19 / 25 |
+| Calidad de la explicación teórica | 21 / 25 |
+| Corrección de la implementación | 15 / 20 |
+| Calidad del análisis de las gráficas | 16 / 20 |
+| Documentación y organización del informe | 8 / 10 |
+| **Total** | **79 / 100** |
+| **Nota (0–5)** | **3.95** |
 
-## 1. Corrección conceptual (17 / 25)
+## 1. Corrección conceptual (19 / 25)
 **Lo que hizo bien:**
-- Distingue bien entre que el resultado sea correcto y que llegue a tiempo.
+- Distingue bien entre que el resultado sea correcto y que llegue dentro de las cuatro horas, y explica por qué duplicar el servidor solo divide el tiempo a la mitad sin cambiar el crecimiento cuadrático.
 - En la Parte 2 identifica dos afectados (el paciente y el operador del centro de contacto) y dice quién asume el costo en cada caso.
-- Explica que el consumo de energía se repite todas las madrugadas y se acumula.
+- Discute que el orden de la lista decide a quién se llama primero, y habla de empates y validación de datos.
 
 **Lo que puede mejorar:**
-- No nombra con claridad la restricción que se incumple (la ventana de cuatro horas con 1.200.000 registros).
-- No explica bien por qué duplicar la velocidad del servidor no arregla el problema: falta decir que el trabajo crece con el cuadrado del tamaño y que el doble de velocidad solo lo reduce a la mitad.
-- El segundo ejemplo (ETL con 70.000 registros) es flojo: no dice cuánto tiempo tarda ni cuál es el límite que se incumple, ni qué algoritmo lo hace inviable.
-- La tensión de que el orden decide a quién se llama primero queda en una frase; falta desarrollarla.
+- El segundo ejemplo (proceso ETL de unos 70.000 registros) no dice qué restricción concreta se incumple; usted mismo aclara que no es un caso de incumplimiento. Debía ser un caso donde un algoritmo correcto resulte inviable, con datos y límite claros.
+- La relación entre tiempo de ejecución y energía queda general: no hay una cifra ni un ejemplo de cómo se acumula en años.
 
-## 2. Calidad de la explicación teórica (16 / 25)
+## 2. Calidad de la explicación teórica (21 / 25)
 **Lo que hizo bien:**
-- Define los tres casos con claridad y justifica que para la ventana estricta se usa el peor caso.
-- Escribe la predicción antes de medir y la compara después con los resultados.
-- Aplica el método maestro identificando a, b y f(n), y llega a Θ(n log n). La tabla de complejidades está completa.
+- Define peor, mejor y promedio, justifica usar el peor caso por la ventana estricta y deja la predicción escrita antes del experimento.
+- Plantea `T(n) = 2T(n/2) + Θ(n)`, explica cada término y aplica el método maestro verificando que `f(n)` es del mismo orden que `n^(log_2 2)`.
+- Incluye la tabla de complejidades por caso.
 
 **Lo que puede mejorar:**
-- La recurrencia de merge sort no está escrita completa (falta `T(n) = 2T(n/2) + Θ(n)`) ni se explica de dónde sale cada término, en especial el costo de combinar.
-- En el método maestro falta nombrar el caso que aplica y escribir la condición que se verifica.
-- Insertion sort no se analizó línea a línea: faltó indicar cuántas veces se ejecuta cada línea del código y sumar los costos. Solo contó comparaciones.
+- Para insertion sort el análisis se hace por operaciones (ciclo, comparaciones, desplazamientos) y no línea por línea de su código con el costo de cada una.
+- En la definición del caso promedio falta decir que se toma sobre todas las entradas posibles de tamaño fijo, con qué distribución.
 
-## 3. Corrección de la implementación (10 / 20)
+## 3. Corrección de la implementación (15 / 20)
 **Lo que hizo bien:**
-- `insertion_sort` ordena bien de mayor a menor, trabaja sobre una copia y cuenta las comparaciones correctamente.
-- Los tres generadores producen lotes del tamaño pedido, sin repetidos y con semilla.
-- No usa `sorted()` ni `list.sort()`.
+- `insertion_sort` y `merge_sort` ordenan bien, no tocan la lista recibida, cuentan comparaciones entre elementos y no usan `sorted()` ni `list.sort()`. La mezcla es propia.
+- Los generadores devuelven listas del tamaño pedido, sin repetidos, con semilla.
 
 **Lo que puede mejorar:**
-- `merge_sort` no cumple lo pedido: devuelve solo la lista, no la cuenta de comparaciones. Su descripción dice "de menor a mayor" cuando en realidad ordena de mayor a menor.
-- Falta la descripción de módulo en `algoritmos.py`, y `merge` y varias funciones auxiliares no tienen la sección de argumentos y retorno.
-- Las descripciones de los generadores son más cortas que las pedidas.
-- Faltan líneas en blanco entre funciones.
+- Las funciones de `datos.py` y las de medición solo tienen una línea de explicación; faltan las secciones `Args` y `Returns` del estilo Google.
+- Hay tres líneas en blanco seguidas entre funciones en `parte4_complejidad.py`, y una variable sin usar (`comparaciones`) en `medir_merge_sort`.
 
-## 4. Calidad del análisis de las gráficas (15 / 20)
+## 4. Calidad del análisis de las gráficas (16 / 20)
 **Lo que hizo bien:**
-- Las tres gráficas existen, tienen título, ejes rotulados y leyenda, y están incrustadas en el informe.
-- Identifica bien el mejor caso (B), el promedio (A) y el peor (C), con una tabla de datos.
-- El concepto para la Secretaría recomienda merge sort, cita medidas (6.400 registros), extrapola a 1.200.000 registros declarando que es una estimación y menciona la memoria extra.
+- Las tres gráficas existen, con título, ejes rotulados y leyenda, y se ven en el informe.
+- Identifica con datos que el inverso es el peor caso, el casi ordenado el mejor y el aleatorio el intermedio, y contrasta con su predicción.
+- La Parte 4.2 concluye que merge sort es mucho mejor y lo relaciona con las complejidades calculadas.
+- La extrapolación a 1.200.000 registros está bien razonada y declarada como estimación (cerca de 26 horas contra unos 6 segundos).
 
 **Lo que puede mejorar:**
-- No explica qué pasa con los tamaños pequeños en la gráfica de la Parte 4, ni compara con cuidado la forma de las curvas con las complejidades de 4.1.
-- La respuesta a la compra del servidor debería usar el dato medido de forma más directa (por ejemplo, cuánto tiempo seguiría tardando insertion sort con el doble de velocidad).
-- La estimación de insertion sort usa el tiempo del caso aleatorio como si fuera el peor caso; debe aclararlo o medir el caso inverso.
-- Faltó discutir otra consideración, como la estabilidad o el mantenimiento del código.
+- No explica qué pasa con los tamaños pequeños en la gráfica de la Parte 4 (en la lectura de n = 100 las dos curvas casi se tocan).
+- En el concepto para la Secretaría no explica con qué criterio resolvió el compromiso de no mantener tres implementaciones, y la respuesta al servidor doble se apoya en la extrapolación más que en un valor leído de una gráfica citada.
+- La consideración de memoria de merge sort es muy breve.
 
-## 5. Documentación y organización del informe (4 / 10)
+## 5. Documentación y organización del informe (8 / 10)
 **Lo que hizo bien:**
-- El informe está organizado por partes, con su nombre e instrucciones para reproducir los experimentos.
-- Las gráficas se ven incrustadas con ruta relativa.
+- La carpeta `lab1-fundamentos-complejidad-recurrencias/` tiene todos los archivos pedidos, las gráficas se ven y hay seis commits descriptivos.
+- Hay nombre, instrucciones de reproducción y enlaces al código.
 
 **Lo que puede mejorar:**
-- No siguió la convención de nombres: el informe se llama `Readme.md` y debía llamarse `README.md`.
-- Ninguna parte enlaza su código (`algoritmos.py`, `datos.py`, `parte3_casos.py`, `parte4_complejidad.py`).
-- Solo hay 3 commits del laboratorio y se piden al menos 5, con avance repartido.
+- Los enlaces al código están todos al inicio del informe; debían aparecer también al comienzo de la Parte 3 y de la Parte 4.
+- Las instrucciones asumen Windows y un entorno virtual llamado `venv`.
 
 ## ¿El código funciona?
-Los scripts corren si se ejecutan desde la raíz del repositorio, como indica el informe, y ordenan bien. Si se ejecutan desde la carpeta del laboratorio fallan al guardar las gráficas. Las gráficas se generan, pero `merge_sort` no cuenta comparaciones.
+Sí. Ambos scripts corren sin errores, ordenan correctamente los tres escenarios y generan las gráficas.
 
 ## Para el próximo laboratorio
-- Siga exactamente las firmas y descripciones que pide la guía (por ejemplo, que `merge_sort` devuelva también las comparaciones).
-- Escriba la recurrencia completa y analice el código línea por línea, indicando cuántas veces se ejecuta cada una.
-- Respalde cada argumento con números concretos (tiempos, cantidad de registros, ventana de cuatro horas).
-- Enlace el código en cada parte, nombre el informe `README.md` y haga commits pequeños y frecuentes.
-- Revise el estilo con una herramienta de PEP 8 antes de entregar.
+- Escoja ejemplos propios con cifras y una restricción clara (tiempo, memoria o latencia).
+- Cuando se pida un análisis línea por línea, escriba cada línea del código con el número de veces que se ejecuta.
+- Complete los *docstrings* con `Args` y `Returns` en todas las funciones.
+- Enlace el código al comienzo de cada parte práctica y cite la gráfica y el tamaño del que toma cada dato.
+- Explique siempre lo que se ve en tamaños pequeños cuando las curvas no se comportan como en la teoría.
